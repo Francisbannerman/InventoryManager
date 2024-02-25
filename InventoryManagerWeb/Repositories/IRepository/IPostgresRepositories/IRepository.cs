@@ -1,0 +1,17 @@
+using System.Linq.Expressions;
+
+namespace InventoryManagerWeb.Repositories.IRepository.IPostgresRepositories;
+
+public interface IRepository<T> where T : class
+{
+    Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>>? filter = null, string? includeProperties = null);
+    Task<T> GetAsync(Guid id);
+    T Get(Expression<Func<T, bool>> filter, string? includeProperties = null, bool tracked = false);
+    Task AddAsync(T entity);
+    Task RemoveAsync(T entity);
+    Task RemoveRangeAsync(IEnumerable<T> entity);
+    Task<int> CountAsync(Expression<Func<T, bool>> filter = null);
+    Task<bool> ExistsAsync(Expression<Func<T, bool>> filter);
+    Task<int> MaxAsync(Expression<Func<T, int>> entity);
+    Task EditAsync(T entity);
+}

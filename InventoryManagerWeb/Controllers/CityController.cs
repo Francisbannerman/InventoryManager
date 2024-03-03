@@ -27,16 +27,20 @@ public class CityController : ControllerBase
      //IUnitOfWork
      private readonly IUnitOfWork _unitOfWork;
      private readonly NotificationService _notificationService;
-     public CityController(IUnitOfWork unitOfWork, NotificationService notificationService)
+     private readonly ILogger<CityController> _logger;
+     public CityController(IUnitOfWork unitOfWork, NotificationService notificationService,
+         ILogger<CityController> logger)
      {
          _unitOfWork = unitOfWork;
          _notificationService = notificationService;
+         _logger = logger;
      }
      
      [HttpGet]
     public async Task<IEnumerable<CityDto>> GetCitiesAsync()
     {
         var cities = (await _unitOfWork.City.GetAllAsync()).Select(city => city.AsDto());
+        _logger.LogInformation("All Cities have been searched for");
         return cities;
     }
     
@@ -48,6 +52,7 @@ public class CityController : ControllerBase
         {
             return NotFound();
         }
+        _logger.LogInformation($"City With name {city.CityName} have been searched for");
         return city.AsDto();
     }
 
@@ -62,6 +67,7 @@ public class CityController : ControllerBase
         };
         await _unitOfWork.City.AddAsync(city);
         _notificationService.AddNotification(msg);
+        _logger.LogInformation($"City With name {city.CityName} have been created");
         await _unitOfWork.SaveAsync();
         return CreatedAtAction(nameof(GetCityAsync), new { id = city.Id }, city.AsDto());
     }
@@ -78,6 +84,7 @@ public class CityController : ControllerBase
         existingCity.CityRep = cityDto.CityRep;
 
         await _unitOfWork.City.EditAsync(existingCity);
+        _logger.LogInformation($"City With name {existingCity.CityName} have been updated");
         await _unitOfWork.SaveAsync();
         return NoContent();
     }
@@ -91,6 +98,7 @@ public class CityController : ControllerBase
             return NotFound();
         }
         var msg = $"The city({existingCity.CityName}) has been deleted";
+        _logger.LogInformation($"City With name {existingCity.CityName} have been deleted");
         await _unitOfWork.City.RemoveAsync(existingCity);
         _notificationService.AddNotification(msg);
         await _unitOfWork.SaveAsync();

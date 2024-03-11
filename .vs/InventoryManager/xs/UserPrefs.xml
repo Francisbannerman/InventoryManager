@@ -1,0 +1,27 @@
+﻿<Properties StartupConfiguration="{9C99F3DB-B86F-4477-A0BD-20179712A196}|Default">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workbench ActiveDocument="InventoryManagerWeb/Program.cs">
+    <Files>
+      <File FileName="InventoryManagerWeb/Controllers/CityController.cs" Line="1" Column="1" />
+      <File FileName="InventoryManagerWeb/Program.cs" Line="125" Column="11" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="InventoryManager" expanded="True">
+            <Node name="InventoryManagerWeb" expanded="True">
+              <Node name="Controllers" expanded="True" />
+              <Node name="Program.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.InventoryManagerWeb PreferredExecutionTarget="/Applications/Google Chrome.app" />
+</Properties>
